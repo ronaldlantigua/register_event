@@ -9,7 +9,7 @@ var uglify = require('gulp-uglify');
 var pump = require('pump');
 
 
-gulp.task('default', ['styles', 'lint'], function() {
+gulp.task('default', ['styles', 'lint', 'compress'], function() {
 	browserSync.init({
 		server: './',
 		stream: true
@@ -17,7 +17,7 @@ gulp.task('default', ['styles', 'lint'], function() {
 
 	gulp.watch('sass/**/*.scss', ['styles']).on('change', browserSync.reload);
 	gulp.watch('*.html').on('change', browserSync.reload);
-	gulp.watch('js/**/*.js', ['lint']);
+	gulp.watch('js/**/*.js', ['compress']);
 });
 
 gulp.task('styles', function() {
@@ -25,7 +25,7 @@ gulp.task('styles', function() {
 		.pipe(sass())
 		.pipe(minifyCSS())
 		.pipe(concat('styles.min.css'))
-		.pipe(gulp.dest('styles'));
+		.pipe(gulp.dest('build/styles'));
 });
 
 gulp.task('lint', function() {
@@ -35,13 +35,12 @@ gulp.task('lint', function() {
 		.pipe(eslint.failOnError());
 });
 
-
-
-gulp.task('compress', function (cb) {
+gulp.task('compress', ['lint'], function (cb) {
   pump([
         gulp.src('js/**/*.js'),
         uglify(),
-        gulp.dest('dist')
+        concat('scripts.min.js'),
+        gulp.dest('build/js')
     ],
     cb
   );
