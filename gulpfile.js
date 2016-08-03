@@ -8,7 +8,7 @@ var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var pump = require('pump');
 
-
+var appJsDir = 'js/app/';
 gulp.task('default', ['styles', 'lint', 'compress'], function() {
 	browserSync.init({
 		server: './',
@@ -17,7 +17,7 @@ gulp.task('default', ['styles', 'lint', 'compress'], function() {
 
 	gulp.watch('sass/**/*.scss', ['styles']).on('change', browserSync.reload);
 	gulp.watch('*.html').on('change', browserSync.reload);
-	gulp.watch('js/**/*.js', ['compress']);
+	gulp.watch(appJsDir + '/**/*.js', ['compress']);
 });
 
 gulp.task('styles', function() {
@@ -29,7 +29,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('lint', function() {
-	gulp.src('js/**/*.js')
+	gulp.src(appJsDir + '/**/*.js')
 		.pipe(eslint())
 		.pipe(eslint.formatEach())
 		.pipe(eslint.failOnError());
@@ -37,7 +37,7 @@ gulp.task('lint', function() {
 
 gulp.task('compress', ['lint'], function (cb) {
   pump([
-        gulp.src('js/**/*.js'),
+        gulp.src(appJsDir + '/**/*.js'),
         uglify(),
         concat('scripts.min.js'),
         gulp.dest('build/js')
