@@ -2,9 +2,41 @@
 <html>
 <head>
 	<title>Register Event</title>
-	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="build/styles/styles.min.css">
+	<script type="text/javascript" src="js/lib/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="js/lib/knockout.js"></script>
 </head>
 <body>
-	Register Event App
+	<div class="content">
+		<section id="user-creation">
+			<h1>Create Your Account</h1>
+			<section>
+				<form>
+					<div class="form-row">
+						<label for="user-name">Name</label>
+						<input class="text-input" id="user-name" type="text" required placeholder="John Smith" autocomplete="name" />
+					</div>
+					<div class="form-row">
+						<label for="user-email">Email</label>
+						<input id="user-email" class="text-input" type="email" required placeholder="jsmith@gmail.com" autocomplete="email" />
+					</div>
+					<div class="form-row">
+						<label for="user-password">Password</label>
+						<input id="user-password" class="text-input" type="password" required placeholder="password" />
+					</div>
+					<div class="form-row">
+						<label for="user-ocupation">Ocupation</label>
+						<input id="user-ocupation" class="text-input" type="text" placeholder="ocupation" />
+					</div>
+					<div class="form-row">
+						<label for="user-birthday">Born Date</label>
+						<input id="user-birthday" class="text-input" type="date" />
+					</div>
+					<input class="submit" type="submit" />
+				</form>
+			</section>
+		</section>
+	</div>
 </body>
 </html>

@@ -1,5 +1,9 @@
-@media screen and(max-width: 500px) {
-	body {
-		margin: 1px;
-	}	
+@media screen and(min-width: 501px) {
+	.content {
+		
+		#user-creation {
+			width: 500px;
+			margin: 0 auto;
+		}
+	}
 }

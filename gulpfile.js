@@ -15,8 +15,8 @@ gulp.task('default', ['styles', 'lint', 'compress'], function() {
 		stream: true
 	});
 
-	gulp.watch('sass/**/*.scss', ['styles']).on('change', browserSync.reload);
-	gulp.watch('*.html').on('change', browserSync.reload);
+	gulp.watch('sass/**/*.scss', ['styles']);
+	gulp.watch('*.html').on('change', reload);
 	gulp.watch(appJsDir + '/**/*.js', ['compress']);
 });
 
@@ -25,7 +25,10 @@ gulp.task('styles', function() {
 		.pipe(sass())
 		.pipe(minifyCSS())
 		.pipe(concat('styles.min.css'))
-		.pipe(gulp.dest('build/styles'));
+		.pipe(gulp.dest('build/styles'))
+		.pipe(reload({
+			stream: true
+		}));
 });
 
 gulp.task('lint', function() {
