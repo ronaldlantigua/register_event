@@ -5,35 +5,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="build/styles/styles.min.css">
 	<script type="text/javascript" src="js/lib/jquery-3.1.0.min.js"></script>
-	<script type="text/javascript" src="js/lib/knockout.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/lib/knockout-3.4.0.js"></script>
+	<script type="text/javascript" src="build/js/scripts.min.js"></script>
+
 </head>
 <body>
 	<div class="content">
-		<section id="user-creation">
+		<section class="form-section" id="user-creation">
 			<h1>Create Your Account</h1>
 			<section>
-				<form>
+				<form id="user-creation-form">
 					<div class="form-row">
 						<label for="user-name">Name</label>
-						<input class="text-input" id="user-name" type="text" required placeholder="John Smith" autocomplete="name" />
+						<input class="text-input" id="user-name" name="userName" type="text" required autofocus="autofocus" placeholder="John Smith" autocomplete="name" />
 					</div>
 					<div class="form-row">
 						<label for="user-email">Email</label>
-						<input id="user-email" class="text-input" type="email" required placeholder="jsmith@gmail.com" autocomplete="email" />
+						<input id="user-email" name="userEmail" class="text-input" type="email" required placeholder="jsmith@gmail.com" autocomplete="email" />
 					</div>
 					<div class="form-row">
 						<label for="user-password">Password</label>
-						<input id="user-password" class="text-input" type="password" required placeholder="password" />
+						<input id="user-password" name="userPassword" class="text-input" type="password" required minlength="6" placeholder="password" />
 					</div>
 					<div class="form-row">
 						<label for="user-ocupation">Ocupation</label>
-						<input id="user-ocupation" class="text-input" type="text" placeholder="ocupation" />
+						<input id="user-ocupation" name="userOcupation" class="text-input" type="text" placeholder="ocupation" />
 					</div>
 					<div class="form-row">
-						<label for="user-birthday">Born Date</label>
-						<input id="user-birthday" class="text-input" type="date" />
+						<label for="user-born-date">Born Date</label>
+						<input id="user-born-date" name="userBornDate" class="text-input" type="date" />
 					</div>
-					<input class="submit" type="submit" />
+					<input class="submit" type="submit" value="Submit" />
 				</form>
 			</section>
 		</section>
