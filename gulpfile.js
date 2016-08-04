@@ -18,6 +18,7 @@ gulp.task('default', ['styles', 'lint', 'compress'], function() {
 	gulp.watch('sass/**/*.scss', ['styles']);
 	gulp.watch('*.html').on('change', reload);
 	gulp.watch(appJsDir + '/**/*.js', ['compress']);
+	gulp.watch('build/**/scripts.min.js').on('change', reload);
 });
 
 gulp.task('styles', function() {
@@ -41,7 +42,7 @@ gulp.task('lint', function() {
 gulp.task('compress', ['lint'], function (cb) {
   pump([
         gulp.src(appJsDir + '/**/*.js'),
-        uglify(),
+        // uglify(),
         concat('scripts.min.js'),
         gulp.dest('build/js')
     ],
