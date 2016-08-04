@@ -19,6 +19,7 @@ gulp.task('default', ['styles', 'lint', 'compress'], function() {
 	gulp.watch('*.html').on('change', reload);
 	gulp.watch(appJsDir + '/**/*.js', ['compress']);
 	gulp.watch('build/**/scripts.min.js').on('change', reload);
+	gulp.watch('build/**/styles.min.css').on('change', reload);
 });
 
 gulp.task('styles', function() {
@@ -27,9 +28,6 @@ gulp.task('styles', function() {
 		.pipe(minifyCSS())
 		.pipe(concat('styles.min.css'))
 		.pipe(gulp.dest('build/styles'))
-		.pipe(reload({
-			stream: true
-		}));
 });
 
 gulp.task('lint', function() {

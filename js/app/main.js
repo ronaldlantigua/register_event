@@ -16,24 +16,20 @@ var ProgressBar = function(progressBarID){
 	};
 };
 
-var handleValidationAndProgressBarFor = function (selector, validator, progressBar) {
+var handleValidationAndProgressBarFor = function (selector, validator, progressBar, progressId) {
 	var length = $(selector).length;
 	var offset = 100 / length;
-	console.log(offset);
-	var progress = 0;
+	var progressValue = 0;
 	$(selector ).focusout(function() {
 		$(selector).each(function() {
 			if(validator.check(this)) {
-				console.log(this);
-				console.log(offset);
-				console.log(progress);
-				progress = progress + offset;
+				progressValue = progressValue + offset;
 			}
 		});
 
-		console.log(progress);
-		progressBar.setValue(progress);
-		progress = 0;
+		progressBar.setValue(progressValue);
+		$(progressId + ' .porcentage').html(Math.round(progressValue) + '%');
+		progressValue = 0;
 	});
 };
 
@@ -42,5 +38,5 @@ $(document).ready(function() {
 	progressBar.init();
 
 	var userCreationValidator = userCreationValidation();
-	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar);
+	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#progress');
 });

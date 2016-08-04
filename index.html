@@ -21,8 +21,10 @@
 </script>
 	<div class="content">
 		<section class="form-section" id="user-creation">
-			<div> progress <span id="progress">0%</span></div>
-			<div id="progressbar"></div>		
+			<div class="progressBarContainer">
+				<div id="progress">Progress <span class="porcentage">0%</span></div>
+				<div id="progressbar"></div>	
+			</div>	
 			<h1>Create Your Account</h1>
 			<section>
 				<form id="user-creation-form">
@@ -36,7 +38,7 @@
 					</div>
 					<div class="form-row">
 						<label for="user-password">Password</label>
-						<input id="user-password" name="userPassword" class="text-input" type="password" required minlength="10" pattern=".*\d.*" placeholder="password" />
+						<input id="user-password" name="userPassword" class="text-input" type="password" required minlength="10" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[@#$%!]).*$" placeholder="password" />
 					</div>
 					<div class="form-row">
 						<label for="user-ocupation">Ocupation <span class="optional-field">(Opcional)</span> </label>

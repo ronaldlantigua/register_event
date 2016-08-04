@@ -54,16 +54,22 @@ body {
 			user-select: none;
 
 			&:focus {
-
+				//Todo is important
 			}
 
 			&:hover {
-
+				//Todo is important
 			}
 		}
 
-		#progressbar {
-			height: 1em;
+		.progressBarContainer {
+			#progressbar {
+				height: 1em;
+			}
+
+			#progress {
+				margin: 5px 0;
+			}
 		}
 	}
 }
