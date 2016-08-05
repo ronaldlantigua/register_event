@@ -33,10 +33,55 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	});
 };
 
+var DataStorage = function() {
+	var self = this;
+	self.saveData = function(key, value) {
+		localStorage.setItem(key, JSON.stringify(value));
+	};
+	self.getData = function(key) {
+		return JSON.parse(localStorage.getItem(key));
+	};
+	self.removeData = function(key) {
+		localStorage.removeItem(key);
+	};
+};
+
+var UserCreationModel = function(dataStorage) {
+	var self = this;
+	self.name = ko.observable();
+	self.email = ko.observable();
+	self.password = ko.observable();
+	self.ocupation = ko.observable();
+	self.bornDate = ko.observable();
+	self.userObject = ko.computed(function() {
+		return {
+			name : self.name(),
+			email : self.email(),
+			password : self.password(),
+			ocupation : self.ocupation(),
+			bornDate : self.bornDate(),
+		};
+	});
+
+	self.saveUserData = function() {
+		if($('#user-creation-form').valid()) {
+			var users = dataStorage.getData('users');
+			if(users) {
+				users.push(self.userObject());
+			} else {
+				users = [self.userObject()];
+			}
+			
+			dataStorage.saveData('users', users);
+		}
+	};
+};
+
 $(document).ready(function() {
 	var progressBar = new ProgressBar('progressbar');
 	progressBar.init();
 
 	var userCreationValidator = userCreationValidation();
 	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#progress');
+	ko.applyBindings(new UserCreationModel(new DataStorage()), document.getElementById('user-creation'));	
 });
