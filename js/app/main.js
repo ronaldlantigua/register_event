@@ -20,7 +20,7 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	var length = $(selector).length;
 	var offset = 100 / length;
 	var progressValue = 0;
-	$(selector ).focusout(function() {
+	$(selector).focusout(function() {
 		$(selector).each(function() {
 			if(validator.check(this)) {
 				progressValue = progressValue + offset;
@@ -33,7 +33,7 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	});
 };
 
-var DataStorage = function() {
+var dataStorage = new function() {
 	var self = this;
 	self.saveData = function(key, value) {
 		localStorage.setItem(key, JSON.stringify(value));
@@ -77,11 +77,50 @@ var UserCreationModel = function(dataStorage) {
 	};
 };
 
+var EventModel = function(dataStorage) {
+	var self = this;
+	self.name = ko.observable();
+	self.type = ko.observable();
+	self.eventTypes = ['Wedding', 'BirthDay', 'Conference', 'Businnes Meeting', 'sports', 'artistical'];
+	self.host = ko.observable();
+	self.startDate = ko.observable();
+	self.endDate = ko.observable();
+	self.guestList = ko.observableArray();
+	self.location = ko.observableArray();
+	self.message = ko.observableArray();
+	self.eventObject = ko.computed(function() {
+		return {
+			name : self.name(),
+			type : self.type(),
+			host : self.host(),
+			startDate : self.startDate(),
+			endDate : self.endDate(),
+			guessList : self.guessList(),
+			location : self.location(),
+			message : self.message(),
+		};
+	});
+
+	self.saveEventData = function() {
+		console.log('save event');
+	};
+};
+
 $(document).ready(function() {
-	var progressBar = new ProgressBar('progressbar');
+	/*User Account Creation*/
+	var progressBar = new ProgressBar('user-progressbar');
 	progressBar.init();
 
 	var userCreationValidator = userCreationValidation();
-	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#progress');
-	ko.applyBindings(new UserCreationModel(new DataStorage()), document.getElementById('user-creation'));	
+	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#user-progress');
+	ko.applyBindings(new UserCreationModel(dataStorage), document.getElementById('user-creation'));	
+
+	/*Event Creation*/
+
+	var progressBar = new ProgressBar('event-progressbar');
+	progressBar.init();
+
+	// var userCreationValidator = userCreationValidation();
+	// handleValidationAndProgressBarFor('#event-creation-form .text-input:required', userCreationValidator, progressBar, '#event-progress');
+	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
 });
