@@ -85,9 +85,12 @@ var EventModel = function(dataStorage) {
 	self.host = ko.observable();
 	self.startDate = ko.observable();
 	self.endDate = ko.observable();
+	self.guest = ko.observable();
 	self.guestList = ko.observableArray();
 	self.location = ko.observable();
 	self.message = ko.observable();
+	self.guestListInvalid = ko.observable(false);
+	self.addedGuest = ko.observable();
 	self.eventObject = ko.computed(function() {
 		return {
 			name : self.name(),
@@ -100,8 +103,26 @@ var EventModel = function(dataStorage) {
 			message : self.message(),
 		};
 	});
+	
+	self.addGuest = function () {
+		if(self.guest() !== '') {
+			self.guestList.push(self.guest());
+			self.addedGuest(self.guest() + ' added');
+			self.guest('');
+		}
+	};
 
+	self.handleGuestListValidation = function () {
+		if(self.guestList().length === 0) {
+			self.guestListInvalid(true);
+		} else {
+			self.guestListInvalid(false);
+		}
+	};
+	
 	self.saveEventData = function() {
+		self.handleGuestListValidation();
+
 		if($('#event-creation-form').valid()) {
 			var events = dataStorage.getData('events');
 

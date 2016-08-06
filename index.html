@@ -81,7 +81,10 @@
 					</div>
 					<div class="form-row">
 						<label for="event-guest-list">Guest List</label>
-						<input data-bind="value: guestList" class="text-input" id="event-guest-list" name="eventHost" type="text" placeholder="Add event participants" autocomplete="name" />
+						<input data-bind="value: guest" class="text-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guests" autocomplete="name" />
+						<label data-bind="visible: guestListInvalid" id="event-guest-list-error" class="custom-error" for="event-guest-list"> At least one guest is required</label>
+						<label data-bind="text: addedGuest" class="added-guest"></label>
+						<input data-bind="click: addGuest" type="button" value="Add">
 					</div>
 					<div class="form-row">
 						<label for="event-location">Location</label>
@@ -89,7 +92,7 @@
 					</div>
 					<div class="form-row">
 						<label for="event-message">Message</label><span class="optional-field">(Opcional)</span>
-						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="text" placeholder="Message for the guests" />
+						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="textarea" row="5" placeholder="Message for the guests" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />
 				</form>

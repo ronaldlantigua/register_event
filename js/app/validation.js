@@ -17,8 +17,8 @@ function eventCreationValidation(){
 
 		},
 		messages: {
-			eventName: {
-				pattern: 'Password should contain at least one uppercase, lowercase, number and one of these symbols @#$%!',
+			eventGuest: {
+				required: 'At least one guest is required',
 			}
 		}
 	});
