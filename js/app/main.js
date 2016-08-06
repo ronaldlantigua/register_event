@@ -86,8 +86,8 @@ var EventModel = function(dataStorage) {
 	self.startDate = ko.observable();
 	self.endDate = ko.observable();
 	self.guestList = ko.observableArray();
-	self.location = ko.observableArray();
-	self.message = ko.observableArray();
+	self.location = ko.observable();
+	self.message = ko.observable();
 	self.eventObject = ko.computed(function() {
 		return {
 			name : self.name(),
@@ -95,14 +95,24 @@ var EventModel = function(dataStorage) {
 			host : self.host(),
 			startDate : self.startDate(),
 			endDate : self.endDate(),
-			guessList : self.guessList(),
+			guestList : self.guestList(),
 			location : self.location(),
 			message : self.message(),
 		};
 	});
 
 	self.saveEventData = function() {
-		console.log('save event');
+		if($('#event-creation-form').valid()) {
+			var events = dataStorage.getData('events');
+
+			if(events) {
+				events.push(self.eventObject());
+			} else {
+				events = [self.eventObject()];
+			}
+			
+			dataStorage.saveData('events', events);
+		}
 	};
 };
 
@@ -120,7 +130,7 @@ $(document).ready(function() {
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
 
-	// var userCreationValidator = userCreationValidation();
-	// handleValidationAndProgressBarFor('#event-creation-form .text-input:required', userCreationValidator, progressBar, '#event-progress');
+	var eventCreationValidator = eventCreationValidation();
+	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
 	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
 });

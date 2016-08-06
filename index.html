@@ -37,11 +37,11 @@
 						<input data-bind="value: password" id="user-password" name="userPassword" class="text-input" type="password" required minlength="10" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[@#$%!]).*$" placeholder="password" />
 					</div>
 					<div class="form-row">
-						<label for="user-ocupation">Ocupation <span class="optional-field">(Opcional)</span> </label>
+						<label for="user-ocupation">Ocupation</label><span class="optional-field">(Opcional)</span> 
 						<input data-bind="value: ocupation" id="user-ocupation" name="userOcupation" class="text-input" type="text" placeholder="ocupation" />
 					</div>
 					<div class="form-row">
-						<label for="user-born-date">Born Date <span class="optional-field">(Opcional)</span></label>
+						<label for="user-born-date">Born Date</label><span class="optional-field">(Opcional)</span>
 						<input data-bind="value: bornDate" id="user-born-date" name="userBornDate" class="text-input" type="date" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />
@@ -50,12 +50,12 @@
 		</section>
 		<section class="form-section" id="event-creation">
 			<div class="progressBarContainer">
-				<div id="progress" class="progress">Progress <span class="porcentage">0%</span></div>
-				<div id="progressbar" class="progress-bar"></div>	
+				<div id="event-progress" class="progress">Progress <span class="porcentage">0%</span></div>
+				<div id="event-progressbar" class="progress-bar"></div>	
 			</div>	
 			<h1>Register Event</h1>
 			<section>
-				<form id="user-creation-form" data-bind="submit: saveEventData">
+				<form id="event-creation-form" data-bind="submit: saveEventData">
 					<div class="form-row">
 						<label for="event-name">Name</label>
 						<input data-bind="value: name" class="text-input" id="event-name" name="eventName" type="text" required autofocus placeholder="Your Event" autocomplete="name" />
@@ -69,7 +69,7 @@
 					</div>
 					<div class="form-row">
 						<label for="event-host">Host</label>
-						<input data-bind="value: host" class="text-input" id="event-host" name="eventHost" type="text" required placeholder="Ex. Las Vegas" autocomplete="name" />
+						<input data-bind="value: host" class="text-input" id="event-host" name="eventHost" type="text" required placeholder="Individual’s name or an organization" autocomplete="name" />
 					</div>
 					<div class="form-row">
 						<label for="event-start-date">Start Date</span></label>
@@ -81,7 +81,15 @@
 					</div>
 					<div class="form-row">
 						<label for="event-guest-list">Guest List</label>
-						<input data-bind="value: guestList" class="text-input" id="event-guest-list" name="eventHost" type="text" required placeholder="Add event participants" autocomplete="name" />
+						<input data-bind="value: guestList" class="text-input" id="event-guest-list" name="eventHost" type="text" placeholder="Add event participants" autocomplete="name" />
+					</div>
+					<div class="form-row">
+						<label for="event-location">Location</label>
+						<input data-bind="value: location" class="text-input" id="event-location" name="eventLocation" type="text" placeholder="Your Event" autocomplete="name" />
+					</div>
+					<div class="form-row">
+						<label for="event-message">Message</label><span class="optional-field">(Opcional)</span>
+						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="text" placeholder="Message for the guests" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />
 				</form>
