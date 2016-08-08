@@ -87,8 +87,8 @@
 						<input data-bind="click: addGuest" type="button" value="Add">
 					</div>
 					<div class="form-row">
-						<label for="event-location">Location</label>
-						<input data-bind="value: location" class="text-input" id="event-location" name="eventLocation" type="text" placeholder="Your Event" autocomplete="name" />
+						<label for="autocomplete">Location</label>
+						<input data-bind="value: location" class="text-input" id="autocomplete" name="eventLocation" type="text" placeholder="Enter your event adress" autocomplete="name" onFocus="geolocate()"/>
 					</div>
 					<div class="form-row">
 						<label for="event-message">Message</label><span class="optional-field">(Opcional)</span>
@@ -99,5 +99,6 @@
 			</section>
 		</section>
 	</div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjXJMvTc8gLv7uaraN1AVLafq8-6xEPyc&libraries=places&callback=initAutocomplete"  async defer></script>
 </body>
 </html>
