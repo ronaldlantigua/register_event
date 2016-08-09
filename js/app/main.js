@@ -122,8 +122,6 @@ var EventModel = function(dataStorage) {
 	
 	self.saveEventData = function() {
 		self.location($('#autocomplete').val());
-		console.log(self.location());
-		console.log($('#autocomplete').val());
 		self.handleGuestListValidation();
 
 		if($('#event-creation-form').valid()) {
