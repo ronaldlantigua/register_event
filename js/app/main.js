@@ -105,7 +105,7 @@ var EventModel = function(dataStorage) {
 		};
 	});
 	
-	self.addGuest = function () {
+	self.addGuest = function() {
 		if(self.guest() !== '') {
 			self.guestList.push(self.guest());
 			self.addedGuest(self.guest() + ' added');
@@ -115,7 +115,7 @@ var EventModel = function(dataStorage) {
 		}
 	};
 
-	self.handleGuestListValidation = function () {
+	self.handleGuestListValidation = function() {
 		if(self.guestList().length === 0) {
 			self.guestListInvalid(true);
 			self.guestClass('error');
@@ -143,6 +143,19 @@ var EventModel = function(dataStorage) {
 	};
 };
 
+var EventsDisplayModel = function(dataStorage) {
+	var self = this;
+
+	self.activeIndex = ko.observable(-1);
+	self.events = dataStorage.getData('events');
+
+	self.handleAccordionItemClick = function(index) {
+		return function() {
+			self.activeIndex(index);
+		};
+	};
+};
+
 $(document).ready(function() {
 	/*User Account Creation*/
 	var progressBar = new ProgressBar('user-progressbar');
@@ -159,5 +172,9 @@ $(document).ready(function() {
 
 	var eventCreationValidator = eventCreationValidation();
 	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
-	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
+	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));
+
+	/*Events Display*/
+
+	ko.applyBindings(new EventsDisplayModel(dataStorage), document.getElementById('events-display'));	
 });

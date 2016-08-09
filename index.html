@@ -98,6 +98,20 @@
 				</form>
 			</section>
 		</section>
+		<section id="events-display">
+			<h1>Events Display</h1>
+
+			<ul data-bind="foreach: events" class="accordion">
+				<li class="accordion-item" data-bind="click: $parent.handleAccordionItemClick($index())">
+					<h2 data-bind="text: name" class="title"></h2>
+					<div class="content" data-bind="css:{ active : $parent.activeIndex() === $index()}">
+						<ul data-bind="foreach: guestList">
+							<li data-bind="text: $data"></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</section>
 	</div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjXJMvTc8gLv7uaraN1AVLafq8-6xEPyc&libraries=places&callback=initAutocomplete"  async defer></script>
 </body>

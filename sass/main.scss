@@ -3,6 +3,10 @@ body {
 	margin: 0;
 }
 
+li {
+	list-style-type: none;
+}
+
 .content {
 	padding: 0 10px;
 
@@ -71,5 +75,20 @@ body {
 				margin: 5px 0;
 			}
 		}
+	}
+
+	#events-display {
+		
+		.content {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+
+	#user-creation, #event-creation {
+		// display: none;
 	}
 }
