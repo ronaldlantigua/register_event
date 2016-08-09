@@ -8,11 +8,11 @@ body {
 
 	.form-section {
 		label {
-			display: block;
+			display: inline-block;
 			margin-bottom: 10px;
 			font-size: 18px;
 
-			&.error {
+			&.error, &.custom-error {
 				color: red;
 				font-size: 16px;
 				margin-top: 5px;
@@ -63,11 +63,11 @@ body {
 		}
 
 		.progressBarContainer {
-			#progressbar {
+			.progress-bar {
 				height: 1em;
 			}
 
-			#progress {
+			.progress {
 				margin: 5px 0;
 			}
 		}

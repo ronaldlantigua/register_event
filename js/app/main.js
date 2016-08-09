@@ -20,7 +20,7 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	var length = $(selector).length;
 	var offset = 100 / length;
 	var progressValue = 0;
-	$(selector ).focusout(function() {
+	$(selector).focusout(function() {
 		$(selector).each(function() {
 			if(validator.check(this)) {
 				progressValue = progressValue + offset;
@@ -33,7 +33,7 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	});
 };
 
-var DataStorage = function() {
+var dataStorage = new function() {
 	var self = this;
 	self.saveData = function(key, value) {
 		localStorage.setItem(key, JSON.stringify(value));
@@ -77,11 +77,87 @@ var UserCreationModel = function(dataStorage) {
 	};
 };
 
+var EventModel = function(dataStorage) {
+	var self = this;
+	self.name = ko.observable();
+	self.type = ko.observable();
+	self.eventTypes = ['Wedding', 'BirthDay', 'Conference', 'Businnes Meeting', 'sports', 'artistical'];
+	self.host = ko.observable();
+	self.startDate = ko.observable();
+	self.endDate = ko.observable();
+	self.guest = ko.observable();
+	self.guestList = ko.observableArray();
+	self.location = ko.observable();
+	self.message = ko.observable();
+	self.guestListInvalid = ko.observable(false);
+	self.addedGuest = ko.observable();
+	self.guestClass = ko.observable();
+	self.eventObject = ko.computed(function() {
+		return {
+			name : self.name(),
+			type : self.type(),
+			host : self.host(),
+			startDate : self.startDate(),
+			endDate : self.endDate(),
+			guestList : self.guestList(),
+			location : self.location(),
+			message : self.message(),
+		};
+	});
+	
+	self.addGuest = function () {
+		if(self.guest() !== '') {
+			self.guestList.push(self.guest());
+			self.addedGuest(self.guest() + ' added');
+			self.guest('');
+			self.guestListInvalid(false);
+			self.guestClass('');
+		}
+	};
+
+	self.handleGuestListValidation = function () {
+		if(self.guestList().length === 0) {
+			self.guestListInvalid(true);
+			self.guestClass('error');
+		} else {
+			self.guestListInvalid(false);
+			self.guestClass('');
+		}
+	};
+	
+	self.saveEventData = function() {
+		self.location($('#autocomplete').val());
+		self.handleGuestListValidation();
+
+		if($('#event-creation-form').valid()) {
+			var events = dataStorage.getData('events');
+
+			if(events) {
+				events.push(self.eventObject());
+			} else {
+				events = [self.eventObject()];
+			}
+			
+			dataStorage.saveData('events', events);
+		}
+	};
+};
+
 $(document).ready(function() {
-	var progressBar = new ProgressBar('progressbar');
+	/*User Account Creation*/
+	var progressBar = new ProgressBar('user-progressbar');
 	progressBar.init();
 
 	var userCreationValidator = userCreationValidation();
-	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#progress');
-	ko.applyBindings(new UserCreationModel(new DataStorage()), document.getElementById('user-creation'));	
+	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#user-progress');
+	ko.applyBindings(new UserCreationModel(dataStorage), document.getElementById('user-creation'));	
+
+	/*Event Creation*/
+
+	var progressBar = new ProgressBar('event-progressbar');
+	progressBar.init();
+
+	var eventCreationValidator = eventCreationValidation();
+	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
+	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
 });
