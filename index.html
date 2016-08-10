@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div class="content">
+	<div class="main-content">
 		<section class="form-section" id="user-creation">
 			<div class="progressBarContainer">
 				<div id="user-progress" class="progress">Progress <span class="porcentage">0%</span></div>
@@ -102,12 +102,15 @@
 			<h1>Events Display</h1>
 
 			<ul data-bind="foreach: events" class="accordion">
-				<li class="accordion-item" data-bind="click: $parent.handleAccordionItemClick($index())">
-					<h2 data-bind="text: name" class="title"></h2>
+				<li class="accordion-item">
+					<h2 data-bind="text: name, click: $parent.handleAccordionItemClick($index())" class="title"></h2>
 					<div class="content" data-bind="css:{ active : $parent.activeIndex() === $index()}">
-						<ul data-bind="foreach: guestList">
-							<li data-bind="text: $data"></li>
-						</ul>
+						<p>Location</p>
+						<p data-bind="text: location_address"></p>
+						<p>Start Date and Time</p>
+						<p data-bind="text: startDate"></p>
+						<p>End Date and Time</p>
+						<p data-bind="text: endDate"></p>
 					</div>
 				</li>
 			</ul>

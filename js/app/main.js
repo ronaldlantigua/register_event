@@ -100,7 +100,7 @@ var EventModel = function(dataStorage) {
 			startDate : self.startDate(),
 			endDate : self.endDate(),
 			guestList : self.guestList(),
-			location : self.location(),
+			location_address : self.location(),
 			message : self.message(),
 		};
 	});
@@ -126,6 +126,7 @@ var EventModel = function(dataStorage) {
 	};
 	
 	self.saveEventData = function() {
+		console.log('saving event');
 		self.location($('#autocomplete').val());
 		self.handleGuestListValidation();
 
@@ -151,7 +152,11 @@ var EventsDisplayModel = function(dataStorage) {
 
 	self.handleAccordionItemClick = function(index) {
 		return function() {
-			self.activeIndex(index);
+			if(index === self.activeIndex()) {
+				self.activeIndex(-1);
+			} else {
+				self.activeIndex(index);
+			}
 		};
 	};
 };
