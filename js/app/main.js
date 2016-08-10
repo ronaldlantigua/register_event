@@ -153,11 +153,20 @@ $(document).ready(function() {
 	ko.applyBindings(new UserCreationModel(dataStorage), document.getElementById('user-creation'));	
 
 	/*Event Creation*/
-
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
 
 	var eventCreationValidator = eventCreationValidation();
 	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
 	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
+
+	/*preventing form submission when enter is pressed and it is not a submit input*/
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+			if($('.submit').is(':focus') === false) {
+				event.preventDefault();
+				return false;
+			}
+		}
+	});
 });
