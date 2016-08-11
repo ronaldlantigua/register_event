@@ -9,5 +9,60 @@
 		    border-radius: 10px;
 		    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
 		}
+
+		#events-display {
+
+			.accordion {
+			    
+				.content {
+
+					.field-row {
+						display: flex;
+
+						.label {
+							width: 200px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and(min-width: 728px) {
+	.main-content {
+		
+		#user-creation, #event-creation, #events-display {
+			width: 728px;
+		}
+
+		.main-title {
+			font-size: 25px;
+		}
+
+		#events-display {
+
+			.accordion {
+
+				.title {
+					font-size: 20px;
+			    }
+
+				.content {
+
+					.field-row {
+
+						.label {
+							font-size: 18px;
+							width: 200px;
+						}
+
+						.value {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
 	}
 }

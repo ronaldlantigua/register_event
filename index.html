@@ -108,12 +108,18 @@
 				<li class="accordion-item">
 					<h2 data-bind="text: name, click: $parent.handleAccordionItemClick($index())" class="title"></h2>
 					<div class="content" data-bind="css:{ active : $parent.activeIndex() === $index()}">
-						<p class="label">Location</p>
-						<p class="value" data-bind="text: location_address"></p>
-						<p class="label">Start Date and Time</p>
-						<p class="value" data-bind="text: startDate"></p>
-						<p class="label">End Date and Time</p>
-						<p class="value" data-bind="text: endDate"></p>
+						<div class="field-row">
+							<p class="label">Location</p>
+							<p class="value" data-bind="text: location_address"></p>	
+						</div>
+						<div class="field-row">
+							<p class="label">Start date and time</p>
+							<p class="value" data-bind="text: startDate"></p>
+						</div>
+						<div class="field-row">
+							<p class="label">End date and time</p>
+							<p class="value" data-bind="text: endDate"></p>
+						</div>
 					</div>
 				</li>
 			</ul>
