@@ -16,6 +16,9 @@
 </head>
 <body>
 	<div class="main-content">
+<!-- 		<header>
+  			<button class="hamburger">&#9776;</button>
+		</header> -->
 		<section class="form-section" id="user-creation">
 			<div class="progressBarContainer">
 				<div id="user-progress" class="progress">Progress <span class="porcentage">0%</span></div>
@@ -99,18 +102,18 @@
 			</section>
 		</section>
 		<section id="events-display">
-			<h1>Events Display</h1>
+			<h1 class="main-title">Events Display</h1>
 
 			<ul data-bind="foreach: events" class="accordion">
 				<li class="accordion-item">
 					<h2 data-bind="text: name, click: $parent.handleAccordionItemClick($index())" class="title"></h2>
 					<div class="content" data-bind="css:{ active : $parent.activeIndex() === $index()}">
-						<p>Location</p>
-						<p data-bind="text: location_address"></p>
-						<p>Start Date and Time</p>
-						<p data-bind="text: startDate"></p>
-						<p>End Date and Time</p>
-						<p data-bind="text: endDate"></p>
+						<p class="label">Location</p>
+						<p class="value" data-bind="text: location_address"></p>
+						<p class="label">Start Date and Time</p>
+						<p class="value" data-bind="text: startDate"></p>
+						<p class="label">End Date and Time</p>
+						<p class="value" data-bind="text: endDate"></p>
 					</div>
 				</li>
 			</ul>
