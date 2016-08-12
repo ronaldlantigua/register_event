@@ -1,14 +1,29 @@
 body {
 	padding: 0;
 	margin: 0;
+	font-family: arial, sans-serif;
 }
 
-.content {
-	padding: 0 10px;
+ul {
+	padding: 0;
+
+	li {
+		list-style-type: none;
+	}
+}
+
+.main-content {
+	padding: 1em;
+	background: bisque;
+
+	.main-title {
+		font-size: 23px;
+		color: darkslategrey;
+	}
 
 	.form-section {
 		label {
-			display: inline-block;
+			display: block;
 			margin-bottom: 10px;
 			font-size: 18px;
 
@@ -16,6 +31,11 @@ body {
 				color: red;
 				font-size: 16px;
 				margin-top: 5px;
+			}
+
+			.optional-field {
+				font-size: 16px;
+    			font-style: italic;
 			}
 		}
 
@@ -72,4 +92,87 @@ body {
 			}
 		}
 	}
+
+	#event-creation {
+
+		.guest-input {
+			width: 85%;
+			display: block;
+			float: left;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+
+		.guest-add-button {
+			width: 15%;
+			display: block;
+			height: 40px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border: 1px solid #ccc;
+		}
+	}
+
+	#events-display {
+
+		.accordion {
+
+			.accordion-item {
+			    margin-bottom: 10px;
+			}
+			
+			.title {
+				font-size: 18px;
+			    margin: 0;
+			    background: brown;
+			    color: #fff;
+			    padding: 10px;
+			}
+
+			.content {
+				display: none;
+				padding: 10px;
+				background-color: burlywood;
+
+				&.active {
+					display: block;
+				}
+
+				.field-row {
+
+					.label, .value {
+						margin: 0;
+						padding-bottom: 10px;
+					}
+
+					.label {
+						color: darkslategrey;
+						font-size: 16px;
+						font-weight: bold;
+						width: 200px;
+					}
+
+					.value {
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+
+	#user-creation, #event-creation {
+		// display: none;
+	}
+}
+
+.hamburger {
+    background: none;
+    top: 0;
+    line-height: 45px;
+    border: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    z-index: 10000000000000;
 }

@@ -100,12 +100,12 @@ var EventModel = function(dataStorage) {
 			startDate : self.startDate(),
 			endDate : self.endDate(),
 			guestList : self.guestList(),
-			location : self.location(),
+			location_address : self.location(),
 			message : self.message(),
 		};
 	});
 	
-	self.addGuest = function () {
+	self.addGuest = function() {
 		if(self.guest() !== '') {
 			self.guestList.push(self.guest());
 			self.addedGuest(self.guest() + ' added');
@@ -115,7 +115,7 @@ var EventModel = function(dataStorage) {
 		}
 	};
 
-	self.handleGuestListValidation = function () {
+	self.handleGuestListValidation = function() {
 		if(self.guestList().length === 0) {
 			self.guestListInvalid(true);
 			self.guestClass('error');
@@ -143,6 +143,23 @@ var EventModel = function(dataStorage) {
 	};
 };
 
+var EventsDisplayModel = function(dataStorage) {
+	var self = this;
+
+	self.activeIndex = ko.observable(-1);
+	self.events = dataStorage.getData('events');
+
+	self.handleAccordionItemClick = function(index) {
+		return function() {
+			if(index === self.activeIndex()) {
+				self.activeIndex(-1);
+			} else {
+				self.activeIndex(index);
+			}
+		};
+	};
+};
+
 $(document).ready(function() {
 	/*User Account Creation*/
 	var progressBar = new ProgressBar('user-progressbar');
@@ -153,12 +170,17 @@ $(document).ready(function() {
 	ko.applyBindings(new UserCreationModel(dataStorage), document.getElementById('user-creation'));	
 
 	/*Event Creation*/
+
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
 
 	var eventCreationValidator = eventCreationValidation();
 	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
-	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));	
+	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));
+
+	/*Events Display*/
+
+	ko.applyBindings(new EventsDisplayModel(dataStorage), document.getElementById('events-display'));	
 
 	/*preventing form submission when enter is pressed and it is not a submit input*/
 	$(window).keydown(function(event){
