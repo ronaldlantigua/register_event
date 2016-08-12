@@ -160,27 +160,61 @@ var EventsDisplayModel = function(dataStorage) {
 	};
 };
 
+var MainAppModel = function(dataStorage) {
+	var self = this;
+	self.hamburgerOpen = ko.observable(false);
+	self.isUserCreation = ko.observable(true);
+	self.isEventCreation = ko.observable(false);
+	self.isEventsDisplay = ko.observable(false);
+
+	self.hamburgerClick = function() {
+		if(self.hamburgerOpen()) {
+			self.hamburgerOpen(false);
+		} else {
+			self.hamburgerOpen(true);
+		}
+	};
+
+	self.userCreateMenuClick = function() {
+		self.isUserCreation(true);
+		self.isEventCreation(false);
+		self.isEventsDisplay(false);
+		self.hamburgerOpen(false);
+	};
+	self.eventCreationMenuClick = function() {
+		self.isUserCreation(false);
+		self.isEventCreation(true);
+		self.isEventsDisplay(false);
+		self.hamburgerOpen(false);
+	};
+	self.eventsDisplayMenuClick = function() {
+		self.isUserCreation(false);
+		self.isEventCreation(false);
+		self.isEventsDisplay(true);
+		self.hamburgerOpen(false);
+	};
+
+	self.userCreation = new UserCreationModel(dataStorage);
+	self.eventModel = new EventModel(dataStorage);
+	self.eventsDisplayModel = new EventsDisplayModel(dataStorage);
+};
+
 $(document).ready(function() {
 	/*User Account Creation*/
 	var progressBar = new ProgressBar('user-progressbar');
 	progressBar.init();
-
 	var userCreationValidator = userCreationValidation();
 	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#user-progress');
-	ko.applyBindings(new UserCreationModel(dataStorage), document.getElementById('user-creation'));	
 
 	/*Event Creation*/
-
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
-
 	var eventCreationValidator = eventCreationValidation();
 	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
-	ko.applyBindings(new EventModel(dataStorage), document.getElementById('event-creation'));
 
-	/*Events Display*/
 
-	ko.applyBindings(new EventsDisplayModel(dataStorage), document.getElementById('events-display'));	
+	/*Top main binding*/
+	ko.applyBindings(new MainAppModel(dataStorage), document.getElementById('main'));
 
 	/*preventing form submission when enter is pressed and it is not a submit input*/
 	$(window).keydown(function(event){

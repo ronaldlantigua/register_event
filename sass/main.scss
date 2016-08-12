@@ -1,4 +1,5 @@
-body {
+html, body {
+	height: 100%;
 	padding: 0;
 	margin: 0;
 	font-family: arial, sans-serif;
@@ -15,6 +16,9 @@ ul {
 .main-content {
 	padding: 1em;
 	background: bisque;
+	position: relative;
+	height: 100%;
+	overflow: auto;
 
 	.main-title {
 		font-size: 23px;
@@ -67,11 +71,12 @@ ul {
 	    	height: 40px;
 	    	font-size: 23px;
 	    	border-radius: 5px;
-	    	border: none;
+	    	border: 1px solid #ccc;
 	    	-webkit-user-select: none;  
 			-moz-user-select: none;    
 			-ms-user-select: none;      
 			user-select: none;
+			background: darkturquoise;
 
 			&:focus {
 				background: #ddd;
@@ -83,8 +88,17 @@ ul {
 		}
 
 		.progressBarContainer {
+			width: 76%;
+		    position: absolute;
+		    top: 21px;
+		    right: 1em;
+
 			.progress-bar {
-				height: 1em;
+				height: 0.4em;
+
+				.ui-widget-header {
+				    background: darkturquoise;
+				}
 			}
 
 			.progress {
@@ -110,6 +124,7 @@ ul {
 			border-top-right-radius: 5px;
 			border-bottom-right-radius: 5px;
 			border: 1px solid #ccc;
+			background: darkturquoise;
 		}
 	}
 
@@ -160,19 +175,38 @@ ul {
 		}
 	}
 
-	#user-creation, #event-creation {
-		// display: none;
-	}
-}
+	.header {
 
-.hamburger {
-    background: none;
-    top: 0;
-    line-height: 45px;
-    border: 0;
-    font-size: 1.4em;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    z-index: 10000000000000;
+		.mobile {
+			position: relative;
+
+			.hamburger {
+		    	background: none;
+			    top: 0;
+			    line-height: 15px;
+			    border: 0;
+			    font-size: 1.4em;
+			    font-weight: bold;
+			    cursor: pointer;
+			    outline: none;
+			    z-index: 10000000000000;
+			}
+
+			.nav-menu {
+				margin: 0;
+			    color: #fff;
+			    padding: 10px;
+			    background: black;
+			    position: absolute;
+			    width: 100%;
+			    min-height: 130px;
+			    box-sizing: border-box;
+			    z-index: 1;
+
+			    li {
+			    	padding: 10px;
+			    }
+			}
+		}
+	}
 }
