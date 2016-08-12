@@ -40,11 +40,11 @@
 						<input data-bind="value: password" id="user-password" name="userPassword" class="text-input" type="password" required minlength="10" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[@#$%!]).*$" placeholder="password" />
 					</div>
 					<div class="form-row">
-						<label for="user-ocupation">Ocupation</label><span class="optional-field">(Opcional)</span> 
+						<label for="user-ocupation">Ocupation <span class="optional-field">(Opcional)</span></label>
 						<input data-bind="value: ocupation" id="user-ocupation" name="userOcupation" class="text-input" type="text" placeholder="ocupation" />
 					</div>
 					<div class="form-row">
-						<label for="user-born-date">Born Date</label><span class="optional-field">(Opcional)</span>
+						<label for="user-born-date">Born Date <span class="optional-field">(Opcional)</span></label>
 						<input data-bind="value: bornDate" id="user-born-date" name="userBornDate" class="text-input" type="date" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />
@@ -84,17 +84,17 @@
 					</div>
 					<div class="form-row">
 						<label for="event-guest-list">Guest List</label>
-						<input data-bind="value: guest, css: guestClass" class="text-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guests" autocomplete="name"/>
+						<input data-bind="value: guest, css: guestClass" class="text-input guest-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guests" autocomplete="name"/>
+						<input data-bind="click: addGuest" type="button" value="Add" class="guest-add-button">
 						<label data-bind="visible: guestListInvalid" id="event-guest-list-error" class="custom-error" for="event-guest-list"> At least one guest is required</label>
 						<label data-bind="text: addedGuest" class="added-guest"></label>
-						<input data-bind="click: addGuest" type="button" value="Add">
 					</div>
 					<div class="form-row">
 						<label for="autocomplete">Location</label>
 						<input data-bind="value: location" class="text-input" id="autocomplete" name="eventLocation" type="text" placeholder="Enter your event adress" autocomplete="name" onFocus="geolocate()" required />
 					</div>
 					<div class="form-row">
-						<label for="event-message">Message</label><span class="optional-field">(Opcional)</span>
+						<label for="event-message">Message <span class="optional-field">(Opcional)</span></label>
 						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="textarea" row="5" placeholder="Message for the guests" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />

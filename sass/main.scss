@@ -13,7 +13,8 @@ ul {
 }
 
 .main-content {
-	padding: 0 1em;
+	padding: 1em;
+	background: bisque;
 
 	.main-title {
 		font-size: 23px;
@@ -22,7 +23,7 @@ ul {
 
 	.form-section {
 		label {
-			display: inline-block;
+			display: block;
 			margin-bottom: 10px;
 			font-size: 18px;
 
@@ -30,6 +31,11 @@ ul {
 				color: red;
 				font-size: 16px;
 				margin-top: 5px;
+			}
+
+			.optional-field {
+				font-size: 16px;
+    			font-style: italic;
 			}
 		}
 
@@ -84,6 +90,26 @@ ul {
 			.progress {
 				margin: 5px 0;
 			}
+		}
+	}
+
+	#event-creation {
+
+		.guest-input {
+			width: 85%;
+			display: block;
+			float: left;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+
+		.guest-add-button {
+			width: 15%;
+			display: block;
+			height: 40px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border: 1px solid #ccc;
 		}
 	}
 
