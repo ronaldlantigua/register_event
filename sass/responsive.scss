@@ -26,7 +26,6 @@
 			    }
 
 				.content {
-					display: flex;
 
 					.field-row {
 						margin-bottom: 10px;
@@ -34,6 +33,7 @@
 						.label {
 							font-size: 18px;
 							width: 200px;
+							float: left;
 						}
 
 						.value {
