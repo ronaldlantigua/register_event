@@ -14,7 +14,38 @@
 		width: 728px;
 
 		.main-title {
-			font-size: 25px;
+			font-size: getFontSize('small');
+		}
+
+		.header {
+
+			.container {
+				
+				.hamburger {
+					display: none;
+				}
+
+				.nav-menu {
+					display: flex;
+				    padding: 0;
+				    position: relative;
+				    margin-top: 15px;
+				    min-height: auto;
+
+				    li {
+				    	width: 33%;
+				    	text-align: center;
+				    }
+
+				    &.no-mobile {
+				    	display: flex;
+				    }
+
+				    &.mobile {
+				    	display: none;
+				    }
+				}
+			}
 		}
 
 		#events-display {

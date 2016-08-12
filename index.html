@@ -17,11 +17,16 @@
 <body>
 	<div id="main" class="main-content">
 		<div class="header">
-			<div class="mobile">
+			<div class="container">
 				<header data-bind="click: hamburgerClick">
 		  			<button class="hamburger">&#9776;</button>
 				</header>
-				<ul class="nav-menu" data-bind="visible: hamburgerOpen">
+				<ul class="mobile nav-menu" data-bind="visible: hamburgerOpen">
+					<li data-bind="click: userCreateMenuClick">Create Your Account</li>
+					<li data-bind="click: eventCreationMenuClick">Create Event</li>
+					<li data-bind="click: eventsDisplayMenuClick">Events Display</li>
+				</ul>
+				<ul class="no-mobile nav-menu">
 					<li data-bind="click: userCreateMenuClick">Create Your Account</li>
 					<li data-bind="click: eventCreationMenuClick">Create Event</li>
 					<li data-bind="click: eventsDisplayMenuClick">Events Display</li>
