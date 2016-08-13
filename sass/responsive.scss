@@ -48,6 +48,20 @@
 			}
 		}
 
+		#event-creation {
+
+			&.form-section {
+
+				label.error, label.custom-error {
+				    font-size: 14px;
+				    margin-top: 2px;
+				    position: absolute;
+				    right: 30px;
+				}
+			}
+
+		}
+
 		#events-display {
 
 			.accordion {

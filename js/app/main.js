@@ -53,6 +53,8 @@ var UserCreationModel = function(dataStorage) {
 	self.password = ko.observable();
 	self.ocupation = ko.observable();
 	self.bornDate = ko.observable();
+	self.isValidForm = ko.observable(false);
+
 	self.userObject = ko.computed(function() {
 		return {
 			name : self.name(),
@@ -73,7 +75,17 @@ var UserCreationModel = function(dataStorage) {
 			}
 			
 			dataStorage.saveData('users', users);
+			self.setFieldsToDefault();
+			self.isValidForm(true);
 		}
+	};
+
+	self.setFieldsToDefault = function(){
+		self.name('');
+		self.email('');
+		self.password('');
+		self.ocupation('');
+		self.bornDate('');
 	};
 };
 
@@ -92,6 +104,8 @@ var EventModel = function(dataStorage) {
 	self.guestListInvalid = ko.observable(false);
 	self.addedGuest = ko.observable();
 	self.guestClass = ko.observable();
+	self.isValidForm = ko.observable(false);
+
 	self.eventObject = ko.computed(function() {
 		return {
 			name : self.name(),
@@ -139,7 +153,23 @@ var EventModel = function(dataStorage) {
 			}
 			
 			dataStorage.saveData('events', events);
+			self.setFieldsToDefault();
 		}
+	};
+
+	self.setFieldsToDefault = function() {
+		self.name('');
+		self.type('');
+		self.host('');
+		self.startDate('');
+		self.endDate('');
+		self.guest('');
+		self.guestList('');
+		self.location('');
+		self.message('');
+		self.guestListInvalid(false);
+		self.addedGuest('');
+		self.guestClass('');
 	};
 };
 
@@ -147,7 +177,8 @@ var EventsDisplayModel = function(dataStorage) {
 	var self = this;
 
 	self.activeIndex = ko.observable(-1);
-	self.events = dataStorage.getData('events');
+	var events = dataStorage.getData('events') ? dataStorage.getData('events'): [];
+	self.events = ko.observableArray(events);
 
 	self.handleAccordionItemClick = function(index) {
 		return function() {
@@ -164,8 +195,16 @@ var MainAppModel = function(dataStorage) {
 	var self = this;
 	self.hamburgerOpen = ko.observable(false);
 	self.isUserCreation = ko.observable(true);
-	self.isEventCreation = ko.observable(false);
+	self.isEventCreation = ko.observable(true);
 	self.isEventsDisplay = ko.observable(false);
+	self.isAccountCreated = ko.observable(false);
+
+	if(dataStorage.getData('users')) {
+		self.isUserCreation(false);
+		self.isAccountCreated(true);
+	} else {
+		self.isEventCreation(false);
+	}
 
 	self.hamburgerClick = function() {
 		if(self.hamburgerOpen()) {
@@ -192,11 +231,16 @@ var MainAppModel = function(dataStorage) {
 		self.isEventCreation(false);
 		self.isEventsDisplay(true);
 		self.hamburgerOpen(false);
+		self.eventsDisplayModel.events(dataStorage.getData('events'));
 	};
 
 	self.userCreation = new UserCreationModel(dataStorage);
 	self.eventModel = new EventModel(dataStorage);
 	self.eventsDisplayModel = new EventsDisplayModel(dataStorage);
+
+	self.userCreation.isValidForm.subscribe(function(newValue) {
+		self.isAccountCreated(true);
+	});
 };
 
 $(document).ready(function() {
@@ -214,7 +258,7 @@ $(document).ready(function() {
 
 
 	/*Top main binding*/
-	ko.applyBindings(new MainAppModel(dataStorage), document.getElementById('main'));
+	ko.applyBindings(new MainAppModel(dataStorage));
 
 	/*preventing form submission when enter is pressed and it is not a submit input*/
 	$(window).keydown(function(event){
