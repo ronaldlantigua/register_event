@@ -195,13 +195,15 @@ var MainAppModel = function(dataStorage) {
 	var self = this;
 	self.hamburgerOpen = ko.observable(false);
 	self.isUserCreation = ko.observable(true);
-	self.isEventCreation = ko.observable(true);
+	self.isEventCreation = ko.observable(false);
 	self.isEventsDisplay = ko.observable(false);
 	self.isAccountCreated = ko.observable(false);
 
 	if(dataStorage.getData('users')) {
 		self.isUserCreation(false);
 		self.isAccountCreated(true);
+		self.isEventCreation(true);
+		$('#event-name').focus();
 	} else {
 		self.isEventCreation(false);
 	}
@@ -219,12 +221,14 @@ var MainAppModel = function(dataStorage) {
 		self.isEventCreation(false);
 		self.isEventsDisplay(false);
 		self.hamburgerOpen(false);
+		$('#user-name').focus();
 	};
 	self.eventCreationMenuClick = function() {
 		self.isUserCreation(false);
 		self.isEventCreation(true);
 		self.isEventsDisplay(false);
 		self.hamburgerOpen(false);
+		$('#event-name').focus();
 	};
 	self.eventsDisplayMenuClick = function() {
 		self.isUserCreation(false);
