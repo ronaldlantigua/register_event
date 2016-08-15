@@ -32,11 +32,21 @@
 		.header {
 
 			.container {
+			    position: relative;
+    			    width: 100%;
 				
 				.hamburger {
-					display: none;
+				    display: none;
 				}
 
+				.progress-bar {
+				    height: .4em;
+				    width: 75%;
+				    position: absolute;
+				    left: initial;
+				    right: 0;
+				    top: -25px;
+				}
 				.nav-menu {
 					display: flex;
 				    padding: 0;
@@ -105,14 +115,6 @@
 					}
 				}
 			}
-		}
-
-		.form-section {
-	    	
-	    	.progressBarContainer {
-		    	right: 30px;
-		    	top: 20px;
-	    	}
 		}
 	}
 }

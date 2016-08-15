@@ -204,7 +204,9 @@ ul {
 	.header {
 
 		.container {
-			position: relative;
+			position: fixed;
+	    	width: 500px;
+	    	box-sizing: border-box;
 
 			.hamburger {
 			  position: relative;
@@ -242,6 +244,16 @@ ul {
 
 		    	&.no-mobile {
 			    	display: none;
+			    }
+			}
+			.progress-bar {
+			    height: 0.4em;
+			    width: 75%;
+			    position: absolute;
+			    left: 60px;
+
+			    .ui-widget-header {
+					background: #16994C;
 			    }
 			}
 		}
