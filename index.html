@@ -42,11 +42,11 @@
 				<form id="user-creation-form" data-bind="submit: saveUserData">
 					<div class="form-row">
 						<label for="user-name">Name</label>
-						<input data-bind="value: name" class="text-input" id="user-name" name="userName" type="text" required autofocus placeholder="John Smith" autocomplete="name" />
+						<input data-bind="value: name" class="text-input" id="user-name" name="userName" type="text" required autofocus placeholder="Enter your name" autocomplete="name" />
 					</div>
 					<div class="form-row">
 						<label for="user-email">Email</label>
-						<input data-bind="value: email" id="user-email" name="userEmail" class="text-input" type="email" required placeholder="jsmith@gmail.com" autocomplete="email" />
+						<input data-bind="value: email" id="user-email" name="userEmail" class="text-input" type="email" required placeholder="Enter a valid email address" autocomplete="email" />
 					</div>
 					<div class="form-row">
 						<label for="user-password">Password</label>
@@ -73,7 +73,7 @@
 				<form id="event-creation-form" data-bind="submit: saveEventData">
 					<div class="form-row">
 						<label for="event-name">Name</label>
-						<input data-bind="value: name" class="text-input" id="event-name" name="eventName" type="text" required autofocus placeholder="Your Event" autocomplete="name" />
+						<input data-bind="value: name" class="text-input" id="event-name" name="eventName" type="text" required autofocus placeholder="Your Event name" autocomplete="name" />
 					</div>
 					<div class="form-row">
 						<label for="event-type">Type</label>
@@ -87,23 +87,23 @@
 						<input data-bind="value: host" class="text-input" id="event-host" name="eventHost" type="text" required placeholder="Individual’s name or an organization" autocomplete="name" />
 					</div>
 					<div class="form-row">
-						<label for="event-start-date">Start Date</span></label>
+						<label for="event-start-date">Start date and time</span></label>
 						<input data-bind="value: startDate" id="event-start-date" name="startDate" class="text-input" type="datetime-local" required />
 					</div>
 					<div class="form-row">
-						<label for="event-end-date">End Date</span></label>
+						<label for="event-end-date">End date and time</span></label>
 						<input data-bind="value: endDate" id="event-end-date" name="endDate" class="text-input" type="datetime-local" required />
 					</div>
 					<div class="form-row">
 						<label for="event-guest-list">Guest List</label>
-						<input data-bind="value: guest, css: guestClass" class="text-input guest-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guests" autocomplete="name"/>
+						<input data-bind="value: guest, css: guestClass" class="text-input guest-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guest" autocomplete="name"/>
 						<input data-bind="click: addGuest" type="button" value="Add" class="guest-add-button">
 						<label data-bind="visible: guestListInvalid" id="event-guest-list-error" class="custom-error" for="event-guest-list"> At least one guest is required</label>
 						<label data-bind="text: addedGuest" class="added-guest"></label>
 					</div>
 					<div class="form-row">
 						<label for="autocomplete">Location</label>
-						<input data-bind="value: location" class="text-input" id="autocomplete" name="eventLocation" type="text" placeholder="Enter your event adress" autocomplete="name" onFocus="geolocate()" required />
+						<input data-bind="value: location" class="text-input" id="autocomplete" name="eventLocation" type="text" placeholder="Enter your event address" autocomplete="name" onFocus="geolocate()" required />
 					</div>
 					<div class="form-row">
 						<label for="event-message">Message <span class="optional-field">(Opcional)</span></label>

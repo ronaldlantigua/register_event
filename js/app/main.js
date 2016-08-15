@@ -267,7 +267,7 @@ $(document).ready(function() {
 	/*preventing form submission when enter is pressed and it is not a submit input*/
 	$(window).keydown(function(event){
 		if(event.keyCode == 13) {
-			if($('.submit').is(':focus') === false) {
+			if($('.submit, .guest-add-button').is(':focus') === false) {
 				event.preventDefault();
 				return false;
 			}

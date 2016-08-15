@@ -70,20 +70,22 @@ ul {
 			width: 100%;
 	    	height: 40px;
 	    	font-size: 23px;
+	    	font-weight: bold;
 	    	border-radius: 5px;
 	    	border: 1px solid #ccc;
 	    	-webkit-user-select: none;  
 			-moz-user-select: none;    
 			-ms-user-select: none;      
 			user-select: none;
-			background: darkturquoise;
+			background: #16994C;
+			cursor: pointer;
 
 			&:focus {
-				background: #ddd;
+				background: #3CB770;
 			}
 
 			&:hover {
-				background: #cecece;
+				background: #1CCF67;
 			}
 		}
 
@@ -97,7 +99,7 @@ ul {
 				height: 0.4em;
 
 				.ui-widget-header {
-				    background: darkturquoise;
+				    background: #16994C;
 				}
 			}
 
@@ -124,7 +126,26 @@ ul {
 			border-top-right-radius: 5px;
 			border-bottom-right-radius: 5px;
 			border: 1px solid #ccc;
-			background: darkturquoise;
+			background: #16994C;
+			cursor: pointer;
+			-webkit-user-select: none;  
+			-moz-user-select: none;    
+			-ms-user-select: none;      
+			user-select: none;
+    		font-weight: bold;
+
+
+			&:focus {
+				background: #3CB770;
+			}
+
+			&:hover {
+				background: #1CCF67;
+			}
+		}
+
+		.added-guest {
+			color: #16994C;
 		}
 	}
 
@@ -139,9 +160,10 @@ ul {
 			.title {
 				font-size: 18px;
 			    margin: 0;
-			    background: brown;
+			    background: #16994C;
 			    color: #fff;
 			    padding: 10px;
+			    cursor: pointer;
 			}
 
 			.content {
@@ -205,6 +227,7 @@ ul {
 
 			    li {
 			    	padding: 10px;
+			    	cursor: pointer;
 			    }
 
 		    	&.no-mobile {
