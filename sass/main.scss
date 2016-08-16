@@ -14,7 +14,7 @@ ul {
 }
 
 .main-content {
-	padding: 1em;
+	padding: 0 1em;
 	background: bisque;
 	position: relative;
 	height: 100%;
@@ -23,10 +23,6 @@ ul {
 	.main-title {
 		font-size: 23px;
 		color: darkslategrey;
-	}
-
-	#event-creation, #user-creation, #events-display {
-		padding-top: 20px;
 	}
 
 	.form-section {
@@ -200,62 +196,67 @@ ul {
 			}
 		}
 	}
+}
 
-	.header {
-		position: fixed;
-	    width: 100%;
-	    box-sizing: border-box;
+.header {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    padding: 10px 1em;
+    height: 35px;
+    background: black;
 
-		.container {
+	.container {
 
-			.hamburger {
-			  position: relative;
-			  padding-left: 1.25em;
-			  font-size: 30px;
-			}
+		.hamburger {
+		  position: relative;
+		  padding-left: 1.25em;
+		  font-size: 30px;
+		}
 
-			.hamburger:before {
-			  content: "";
-			  position: absolute;
-			  top: -3px;
-			  left: 0;
-			  width: 1em;
-			  height: 0.125em;
-			  border-top: 0.375em double #000;
-			  border-bottom: 0.125em solid #000;
-			}
+		.hamburger:before {
+		  content: "";
+		  position: absolute;
+		  top: -3px;
+		  left: 0;
+		  width: 1em;
+		  height: 0.125em;
+		  border-top: 0.375em double #fff;
+		  border-bottom: 0.125em solid #fff;
+		}
 
-			.nav-menu {
-				margin: 0;
-			    color: #fff;
-			    padding: 10px;
-			    background: black;
-			    position: absolute;
-			    width: 100%;
-			    min-height: 130px;
-			    box-sizing: border-box;
-			    z-index: 1;
-			    top: 24px;
+		.nav-menu {
+			margin: 0;
+		    color: #fff;
+		    padding: 10px;
+		    background: black;
+		    position: absolute;
+		    width: 100%;
+		    min-height: 130px;
+		    box-sizing: border-box;
+		    z-index: 1;
+		    top: 35px;
+		    left:0;
 
-			    li {
-			    	padding: 10px;
-			    	cursor: pointer;
-			    }
+		    li {
+		    	padding: 10px;
+		    	cursor: pointer;
+		    }
 
-		    	&.no-mobile {
-			    	display: none;
-			    }
-			}
-			.progress-bar {
-			    height: 0.4em;
-			    width: 80%;
-			    position: absolute;
-			    right: 34px;
+	    	&.no-mobile {
+		    	display: none;
+		    }
+		}
+		.progress-bar {
+		    height: 0.4em;
+		    width: 80%;
+		    position: absolute;
+		    right: 1em;
 
-			    .ui-widget-header {
-					background: #16994C;
-			    }
-			}
+		    .ui-widget-header {
+				background: #16994C;
+		    }
 		}
 	}
 }

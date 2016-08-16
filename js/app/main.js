@@ -28,7 +28,6 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 		});
 
 		progressBar.setValue(progressValue);
-		$(progressId + ' .porcentage').html(Math.round(progressValue) + '%');
 		progressValue = 0;
 	});
 };
