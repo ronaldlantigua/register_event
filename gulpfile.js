@@ -40,7 +40,7 @@ gulp.task('lint', function() {
 gulp.task('compress', ['lint'], function (cb) {
   pump([
         gulp.src(appJsDir + '/**/*.js'),
-        // uglify(),
+        uglify(),
         concat('scripts.min.js'),
         gulp.dest('build/js')
     ],
