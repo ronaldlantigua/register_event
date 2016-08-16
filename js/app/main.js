@@ -21,8 +21,18 @@ var handleValidationAndProgressBarFor = function (selector, validator, progressB
 	var offset = 100 / length;
 	var progressValue = 0;
 	$(selector).focusout(function() {
+		var focusoutElem = this;
 		$(selector).each(function() {
-			if(validator.check(this)) {
+			if($(this).hasClass('guest-input')){
+				var guestList = mainAppModel.eventModel.guestList();
+				var isGuestListInvalid = guestList.length > 0 ? false : true;
+				if($(focusoutElem).hasClass('guest-input')) {
+					mainAppModel.eventModel.guestListInvalid(isGuestListInvalid);
+				}
+				if(!isGuestListInvalid) {
+					progressValue = progressValue + offset;
+				}
+			} else if(validator.check(this)) {
 				progressValue = progressValue + offset;
 			}
 		});
@@ -125,6 +135,11 @@ var EventModel = function(dataStorage) {
 			self.guest('');
 			self.guestListInvalid(false);
 			self.guestClass('');
+			if (self.guestList().length === 1) {
+				var progressBar = new ProgressBar('event-progressbar');
+				var progressValue = parseInt(progressBar.getValue());
+				progressBar.setValue(progressValue + 15);
+			}
 		}
 	};
 
@@ -202,7 +217,6 @@ var MainAppModel = function(dataStorage) {
 		self.isUserCreation(false);
 		self.isAccountCreated(true);
 		self.isEventCreation(true);
-		$('#event-name').focus();
 	} else {
 		self.isEventCreation(false);
 	}
@@ -245,6 +259,7 @@ var MainAppModel = function(dataStorage) {
 		self.isAccountCreated(true);
 	});
 };
+var mainAppModel = new MainAppModel(dataStorage);
 
 $(document).ready(function() {
 	/*User Account Creation*/
@@ -254,14 +269,15 @@ $(document).ready(function() {
 	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#user-progress');
 
 	/*Event Creation*/
+	$('#event-name').focus();
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
 	var eventCreationValidator = eventCreationValidation();
-	handleValidationAndProgressBarFor('#event-creation-form .text-input:required', eventCreationValidator, progressBar, '#event-progress');
+	handleValidationAndProgressBarFor('#event-creation-form .text-input:required, #event-creation-form .guest-input', eventCreationValidator, progressBar, '#event-progress');
 
 
 	/*Top main binding*/
-	ko.applyBindings(new MainAppModel(dataStorage));
+	ko.applyBindings(mainAppModel);
 
 	/*preventing form submission when enter is pressed and it is not a submit input*/
 	$(window).keydown(function(event){
