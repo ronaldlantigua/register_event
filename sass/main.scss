@@ -202,16 +202,16 @@ ul {
 	}
 
 	.header {
+		position: fixed;
+	    width: 100%;
+	    box-sizing: border-box;
 
 		.container {
-			position: fixed;
-	    	width: 500px;
-	    	box-sizing: border-box;
 
 			.hamburger {
 			  position: relative;
 			  padding-left: 1.25em;
-			  font-size: 40px;
+			  font-size: 30px;
 			}
 
 			.hamburger:before {
@@ -248,9 +248,9 @@ ul {
 			}
 			.progress-bar {
 			    height: 0.4em;
-			    width: 75%;
+			    width: 80%;
 			    position: absolute;
-			    left: 60px;
+			    right: 34px;
 
 			    .ui-widget-header {
 					background: #16994C;
