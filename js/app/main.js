@@ -86,6 +86,10 @@ var UserCreationModel = function(dataStorage) {
 			dataStorage.saveData('users', users);
 			self.setFieldsToDefault();
 			self.isValidForm(true);
+			mainAppModel.isEventCreation(true);
+			mainAppModel.isUserCreation(false);
+			mainAppModel.isEventsDisplay(false);
+			$('#event-name').focus();
 		}
 	};
 
