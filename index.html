@@ -15,11 +15,10 @@
 
 </head>
 <body>
-	<div class="header">
+	<header class="header">
 		<div class="container">
-			<header class="hamburger" data-bind="click: hamburgerClick">
-	  			<!-- <button ></button> -->
-			</header>
+			<div class="hamburger" data-bind="click: hamburgerClick">
+			</div>
 			<ul class="mobile nav-menu" data-bind="visible: hamburgerOpen">
 				<li data-bind="click: userCreateMenuClick">Create Account</li>
 				<li data-bind="click: eventCreationMenuClick, visible: isAccountCreated">Create Event</li>
@@ -35,11 +34,11 @@
 				<div data-bind="visible: isEventCreation" id="event-progressbar" class="progress-bar"></div>	
 			</div>				
 		</div>
-	</div>
-	<div id="main" class="main-content">
+	</header>
+	<main id="main" class="main-content">
 		<section class="form-section" id="user-creation" data-bind="visible: isUserCreation">
 			<h1 class="main-title">Create Your Account</h1>
-			<section data-bind="with: userCreation">
+			<div data-bind="with: userCreation">
 				<form id="user-creation-form" data-bind="submit: saveUserData">
 					<div class="form-row">
 						<label for="user-name">Name</label>
@@ -63,19 +62,19 @@
 					</div>
 					<input class="submit" type="submit" value="Submit" />
 				</form>
-			</section>
+			</div>
 		</section>
 		<section class="form-section" id="event-creation" data-bind="visible: isEventCreation">
 			<h1 class="main-title">Register Event</h1>
-			<section data-bind="with: eventModel">
+			<div data-bind="with: eventModel">
 				<form id="event-creation-form" data-bind="submit: saveEventData">
 					<div class="form-row">
 						<label for="event-name">Name</label>
-						<input data-bind="value: name" class="text-input" id="event-name" name="eventName" type="text" required autofocus placeholder="Your Event name" autocomplete="name" />
+						<input data-bind="value: name" class="text-input" id="event-name" name="eventName" type="text" required placeholder="Your Event name" autocomplete="name" />
 					</div>
 					<div class="form-row">
 						<label for="event-type">Type</label>
-						<input data-bind="value: type" id="user-email" name="eventType" class="text-input" required placeholder="Event Type" list="eventTypesList"/>
+						<input data-bind="value: type" id="event-type" name="eventType" class="text-input" required placeholder="Event Type" list="eventTypesList"/>
 						<datalist id="eventTypesList" data-bind="foreach: eventTypes">
 							<option data-bind="value: $data">
 						</datalist>
@@ -85,11 +84,11 @@
 						<input data-bind="value: host" class="text-input" id="event-host" name="eventHost" type="text" required placeholder="Individual’s name or an organization" autocomplete="name" />
 					</div>
 					<div class="form-row">
-						<label for="event-start-date">Start date and time</span></label>
+						<label for="event-start-date">Start date and time</label>
 						<input data-bind="value: startDate" id="event-start-date" name="startDate" class="text-input" type="datetime-local" required />
 					</div>
 					<div class="form-row">
-						<label for="event-end-date">End date and time</span></label>
+						<label for="event-end-date">End date and time</label>
 						<input data-bind="value: endDate" id="event-end-date" name="endDate" class="text-input" type="datetime-local" required />
 					</div>
 					<div class="form-row">
@@ -105,11 +104,11 @@
 					</div>
 					<div class="form-row">
 						<label for="event-message">Message <span class="optional-field">(Opcional)</span></label>
-						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="textarea" row="5" placeholder="Message for the guests" />
+						<input data-bind="value: message" class="text-input" id="event-message" name="eventMessage" type="text" placeholder="Message for the guests" />
 					</div>
 					<input class="submit" type="submit" value="Submit" />
 				</form>
-			</section>
+			</div>
 		</section>
 		<section id="events-display" data-bind="visible: isEventsDisplay">
 			<div data-bind="with: eventsDisplayModel">
@@ -136,7 +135,7 @@
 				</ul>
 			</div>
 		</section>
-	</div>
+	</main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjXJMvTc8gLv7uaraN1AVLafq8-6xEPyc&libraries=places&callback=initAutocomplete"  async defer></script>
 </body>
 </html>
