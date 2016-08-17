@@ -5,7 +5,8 @@ function userCreationValidation(){
 		},
 		messages: {
 			userPassword: {
-				pattern: 'Password should contain at least one uppercase, lowercase, number and one of these symbols @#$%!',
+				pattern: 'Password should be greater than 9 characters and contain at least one uppercase, lowercase, number and one of these symbols @#$%!',
+				minlength:'Password should be greater than 9 characters and contain at least one uppercase, lowercase, number and one of these symbols @#$%!'
 			}
 		}
 	});
