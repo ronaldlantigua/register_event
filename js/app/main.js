@@ -172,6 +172,10 @@ var EventModel = function(dataStorage) {
 			
 			dataStorage.saveData('events', events);
 			self.setFieldsToDefault();
+
+			mainAppModel.isEventCreation(false);
+			mainAppModel.isEventsDisplay(true);
+			mainAppModel.eventsDisplayModel.events(dataStorage.getData('events'));
 		}
 	};
 
