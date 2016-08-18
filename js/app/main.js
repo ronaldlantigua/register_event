@@ -16,6 +16,11 @@ var ProgressBar = function(progressBarID){
 	};
 };
 
+var removeValidation = function() {
+	$('label.error').hide();
+	$('.text-input').removeClass('error');
+};
+
 var handleValidationAndProgressBarFor = function (selector, validator, progressBar, progressId) {
 	var length = $(selector).length;
 	var offset = 100 / length;
@@ -242,6 +247,7 @@ var MainAppModel = function(dataStorage) {
 		self.isEventCreation(false);
 		self.isEventsDisplay(false);
 		self.hamburgerOpen(false);
+		removeValidation();
 		$('#user-name').focus();
 	};
 	self.eventCreationMenuClick = function() {
@@ -249,6 +255,7 @@ var MainAppModel = function(dataStorage) {
 		self.isEventCreation(true);
 		self.isEventsDisplay(false);
 		self.hamburgerOpen(false);
+		removeValidation();
 		$('#event-name').focus();
 	};
 	self.eventsDisplayMenuClick = function() {
@@ -256,6 +263,7 @@ var MainAppModel = function(dataStorage) {
 		self.isEventCreation(false);
 		self.isEventsDisplay(true);
 		self.hamburgerOpen(false);
+		removeValidation();
 		self.eventsDisplayModel.events(dataStorage.getData('events'));
 	};
 
@@ -268,8 +276,15 @@ var MainAppModel = function(dataStorage) {
 	});
 };
 var mainAppModel = new MainAppModel(dataStorage);
+var isFirstLoad = true;
 
 $(document).ready(function() {
+	if(mainAppModel.isUserCreation()) {
+		$('#user-name').focus();
+	} else {
+		$('#event-name').focus();
+	}
+
 	/*User Account Creation*/
 	var progressBar = new ProgressBar('user-progressbar');
 	progressBar.init();
@@ -277,7 +292,6 @@ $(document).ready(function() {
 	handleValidationAndProgressBarFor('#user-creation-form .text-input:required', userCreationValidator, progressBar, '#user-progress');
 
 	/*Event Creation*/
-	$('#event-name').focus();
 	var progressBar = new ProgressBar('event-progressbar');
 	progressBar.init();
 	var eventCreationValidator = eventCreationValidation();
