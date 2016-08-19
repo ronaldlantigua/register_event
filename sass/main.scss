@@ -192,8 +192,11 @@ ul {
 				}
 
 				.field-row {
+					display: flex;
+					flex-wrap: wrap;
 
 					.label, .value {
+						width: 100%;
 						margin: 0;
 						padding-bottom: 10px;
 					}
@@ -207,6 +210,14 @@ ul {
 
 					.value {
 						font-size: 14px;
+
+						&.guest-list {
+
+							.guest {
+								margin: 0 20px 10px 0;
+					    		display: inline-block;
+							}
+						}
 					}
 				}
 			}

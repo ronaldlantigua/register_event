@@ -135,6 +135,14 @@
 								<p class="label">End date and time</p>
 								<p class="value" data-bind="text: endDate"></p>
 							</div>
+							<div class="field-row">
+								<p class="label">Guest List</p>
+								<ul class="value guest-list" data-bind="foreach: guestList">
+									<li class="guest">
+										<span data-bind="text: name"></span>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</li>
 				</ul>

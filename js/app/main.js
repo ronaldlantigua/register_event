@@ -150,13 +150,12 @@ var EventModel = function(dataStorage) {
 				var progressValue = parseInt(progressBar.getValue());
 				progressBar.setValue(progressValue + 15);
 			}
+			$('.guest-input').focus();
 		}
 	};
 
 	self.removeGuest = function() {
-		console.log();
 		self.guestList.remove(this);
-		console.log(self.guestList());
 	};
 
 	self.handleGuestListValidation = function() {
