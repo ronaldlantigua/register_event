@@ -139,7 +139,8 @@ var EventModel = function(dataStorage) {
 	
 	self.addGuest = function() {
 		if(self.guest() !== '') {
-			self.guestList.push(self.guest());
+			var guestObject = {'name' : self.guest()};
+			self.guestList.push(guestObject);
 			self.addedGuest(self.guest() + ' added');
 			self.guest('');
 			self.guestListInvalid(false);
@@ -150,6 +151,12 @@ var EventModel = function(dataStorage) {
 				progressBar.setValue(progressValue + 15);
 			}
 		}
+	};
+
+	self.removeGuest = function() {
+		console.log();
+		self.guestList.remove(this);
+		console.log(self.guestList());
 	};
 
 	self.handleGuestListValidation = function() {
@@ -191,7 +198,7 @@ var EventModel = function(dataStorage) {
 		self.startDate('');
 		self.endDate('');
 		self.guest('');
-		self.guestList('');
+		self.guestList([]);
 		self.location('');
 		self.message('');
 		self.guestListInvalid(false);

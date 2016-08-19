@@ -117,6 +117,7 @@ ul {
 			float: left;
 			border-top-right-radius: 0px;
 			border-bottom-right-radius: 0px;
+			margin-bottom: 5px;
 		}
 
 		.guest-add-button {
@@ -144,9 +145,24 @@ ul {
 			}
 		}
 
-		.added-guest {
+		.guest-list {
 			color: #16994C;
+
+			.remove-guest {
+				width: 20px;
+				height: 20px;
+				background: url('../../images/close.png') center center no-repeat;
+				display: inline-block;
+				margin-bottom: 4px;
+			}
+
+			.guest {
+				margin: 0 10px 10px 0;
+	    		display: inline-block;
+			}
 		}
+
+
 	}
 
 	#events-display {

@@ -96,7 +96,12 @@
 						<input data-bind="value: guest, css: guestClass" class="text-input guest-input" id="event-guest-list" name="eventGuest" type="text" placeholder="Add Guest" autocomplete="name"/>
 						<input data-bind="click: addGuest" type="button" value="Add" class="guest-add-button">
 						<label data-bind="visible: guestListInvalid" id="event-guest-list-error" class="custom-error" for="event-guest-list"> At least one guest is required</label>
-						<label data-bind="text: addedGuest" class="added-guest"></label>
+						<ul class="guest-list" data-bind="foreach: guestList">
+							<li class="guest">
+								<span data-bind="text: name"></span>
+								<span class="remove-guest" data-bind="click: $parent.removeGuest" ></span>
+							</li>
+						</ul>
 					</div>
 					<div class="form-row">
 						<label for="autocomplete">Location</label>
